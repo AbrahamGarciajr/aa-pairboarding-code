@@ -392,3 +392,6 @@
 //     console.log(nums[highest] - nums[lowest])
 // }
 // findLargestDifference([1, 6, 5, 2, 9, -2])
+
+
+//   9/14 - 9/20
