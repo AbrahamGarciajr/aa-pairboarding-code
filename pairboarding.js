@@ -375,20 +375,20 @@
 
 
 
-const findLargestDifference = function (nums) {
-    let highest = 0
-    let lowest = 0
+// const findLargestDifference = function (nums) {
+//     let highest = 0
+//     let lowest = 0
 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[highest] < nums[i]) {
-            highest = i
-        }
+//     for (let i = 0; i < nums.length; i++) {
+//         if (nums[highest] < nums[i]) {
+//             highest = i
+//         }
 
-        if (nums[lowest] > nums[i] && i < highest) {
-            lowest = i
-        }
-    }
+//         if (nums[lowest] > nums[i] && i < highest) {
+//             lowest = i
+//         }
+//     }
 
-    console.log(nums[highest] - nums[lowest])
-}
-findLargestDifference([1, 6, 5, 2, 9, -2])
+//     console.log(nums[highest] - nums[lowest])
+// }
+// findLargestDifference([1, 6, 5, 2, 9, -2])
