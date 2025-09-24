@@ -460,3 +460,48 @@
 
 
 // console.log(generate(6))
+
+var subarraySum = function (nums, k) {
+    let subNum = {
+        0: 1
+        //      1:1
+        //7:1
+        //2:1
+        //6:1
+        //9:1
+    };
+    let total = 0, count = 0;
+
+    for (const n of nums) {
+        total += n;
+        // adding 1 making it 1
+        // adding 6 making it 7
+        // adding 2 making it 9
+        // adding 4 making it 13
+        // adding 3 making it 16
+        //adding 7 making it 23
+        if (subNum[total - k] !== undefined) {
+            //subNum[16]
+            count += subNum[total - k];
+            //nope
+            // count += 1 making it 1
+            //nope
+            //nope
+            // count += 1 making it 2
+        }
+
+        subNum[total] = (subNum[total] || 0) + 1;
+        //subNum[1] = 1
+        //subNum[7] = 1
+        //subNum[9] = 1
+        //subNum[13] = 1
+        //subNum[16] = 1
+
+        console.log(subNum, total, count)
+
+    }
+
+    return count;
+};
+
+console.log(subarraySum([1, 6, 2, 4, 3, 7], 7)) /// output 3
