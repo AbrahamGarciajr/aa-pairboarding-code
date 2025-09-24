@@ -404,28 +404,59 @@
 // Sample Output: "mentisac"
 
 
-var threeSum = function (nums) {
-    let res = []
-    let track = {}
+// var threeSum = function (nums) {
+//     let res = []
+//     let track = {}
 
-    nums.sort((a, b) => a - b)
+//     nums.sort((a, b) => a - b)
 
-    for (let i = 0; i < nums.length - 1; i++) {
-        let j = i + 1
-        let k = nums.length - 1
-        while (j !== k) {
-            let key = [nums[i], nums[j], nums[k]].sort().join(',')
-            if (nums[i] + nums[j] + nums[k] === 0 && track[key] !== 1) {
-                res.push([nums[i], nums[j], nums[k]])
-                track[key] = 1
-            }
-            if (nums[i] + nums[j] + nums[k] > 0) {
-                k--
+//     for (let i = 0; i < nums.length - 1; i++) {
+//         let j = i + 1
+//         let k = nums.length - 1
+//         while (j !== k) {
+//             let key = [nums[i], nums[j], nums[k]].sort().join(',')
+//             if (nums[i] + nums[j] + nums[k] === 0 && track[key] !== 1) {
+//                 res.push([nums[i], nums[j], nums[k]])
+//                 track[key] = 1
+//             }
+//             if (nums[i] + nums[j] + nums[k] > 0) {
+//                 k--
+//             } else {
+//                 j++
+//             }
+//         }
+//     }
+
+//     return res
+// };
+
+
+
+const generate = function (numRows) {
+    let first = [1]
+    if (numRows === 1) return [first]
+    let second = [1, 1]
+    if (numRows === 2) return [first, second]
+    let res = [first, second]
+    let i = numRows - 2
+
+    while (i > 0) {
+        let row = []
+        let prev = res[res.length - 1]
+        for (let j = 0; j <= prev.length; j++) {
+            // console.log(row)
+            if (prev[j] && prev[j - 1]) {
+                row.push(prev[j] + prev[j - 1])
             } else {
-                j++
+                row.push(1)
             }
         }
+        res.push(row)
+        i--
     }
 
     return res
-};
+}
+
+
+console.log(generate(6))
