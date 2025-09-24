@@ -394,4 +394,41 @@
 // findLargestDifference([1, 6, 5, 2, 9, -2])
 
 
-//   9/14 - 9/20
+//   9/21 - 9/27
+
+
+
+// Write a function that takes in a string and that returns its longest substring without duplicate characters. Assume that there will only be one longest substring without duplication.
+
+// Sample Input: "clementisacap"
+// Sample Output: "mentisac"
+
+
+var threeSum = function (nums) {
+    let res = []
+    let track = {}
+
+    nums.sort((a, b) => a - b)
+
+    // console.log(nums)
+    for (let i = 0; i < nums.length - 1; i++) {
+        let j = i + 1
+        let k = nums.length - 1
+        while (j !== k) {
+            // console.log([nums[i], nums[j], nums[k]])
+            let key = [nums[i], nums[j], nums[k]].sort().join(',')
+            if (nums[i] + nums[j] + nums[k] === 0 && track[key] !== 1) {
+                // console.log(key, )
+                res.push([nums[i], nums[j], nums[k]])
+                track[key] = 1
+            }
+            if (nums[i] + nums[j] + nums[k] > 0) {
+                k--
+            } else {
+                j++
+            }
+        }
+    }
+
+    return res
+};
