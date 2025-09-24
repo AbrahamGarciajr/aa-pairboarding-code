@@ -410,15 +410,12 @@ var threeSum = function (nums) {
 
     nums.sort((a, b) => a - b)
 
-    // console.log(nums)
     for (let i = 0; i < nums.length - 1; i++) {
         let j = i + 1
         let k = nums.length - 1
         while (j !== k) {
-            // console.log([nums[i], nums[j], nums[k]])
             let key = [nums[i], nums[j], nums[k]].sort().join(',')
             if (nums[i] + nums[j] + nums[k] === 0 && track[key] !== 1) {
-                // console.log(key, )
                 res.push([nums[i], nums[j], nums[k]])
                 track[key] = 1
             }
