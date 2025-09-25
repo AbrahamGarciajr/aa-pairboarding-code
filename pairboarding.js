@@ -625,17 +625,28 @@ var decrypt = function (code, k) {
 
     for (let right = 0; right < n + Math.abs(k); right++) { //n+k
         runningTotal += code[right % n];
+        //adds to the runningTotal
+        //code[right % n] mod to the right pointer helps wrap back around in array
+        // n = 4 but if right = 4 then 4%4 gives us 0 starting us back at the beginning
 
         if (right - left + 1 > Math.abs(k)) {
-            runningTotal -= code[left % n];
-            left = (left + 1) % n;
+            //if right pointer and left pointer subtracted and added by 1 is greater than k
+            //then that means the sliding window went over ans we have to remove the first element added, which is at left pointer
+            //this is when the left pointer increments and covers the updated window starting point
+            runningTotal -= code[left % n]; // removes first element
+            left = (left + 1) % n; // declares new first element in sliding window
         }
 
         if (right - left + 1 === Math.abs(k)) {
+            //if right minus left pointer plus 1 is the same as k then we have all the elements we need to place in the new arr
             if (k > 0) {
                 result[(left + n - 1) % n] = runningTotal;
+                //if k is greater than 0 then result arr at index left plus arr length -1 (ex. (0 + 4 -1) % 4 = 3) so it reassigns at the index
+                //before our left pointer. if it's 0 then it will wrap around to the last index in the array
             } else if (k < 0) {
                 result[(right + 1) % n] = runningTotal;
+                //if k < 0 then we'd want to reassign the index after the sliding window (3 + 1 % 4 = 0) if it is at the end of the array
+                //it wraps around to the beginning
             }
         }
     }
@@ -645,3 +656,5 @@ var decrypt = function (code, k) {
 console.log(decrypt([5, 7, 1, 4], 3))
 console.log(decrypt([1, 2, 3, 4], 0))
 console.log(decrypt([2, 4, 9, 3], -2))
+
+console.log(3%4)
