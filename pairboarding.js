@@ -582,41 +582,66 @@
 // Explanation: The decrypted code is [3+9, 2+3, 4+2, 9+4]. Notice that the numbers wrap around again. If k is negative, the sum is of the previous numbers.
 
 
+// var decrypt = function (code, k) {
+//     let sum = code[1] + code[2] + code[3]
+//     let res = new Array(code.length).fill(0)
+//     if (k === 0) return res
+//     for (let i = 0; i < code.length; i++) {
+//         if (k > 0) {
+//             let j = i
+//             let count = 0
+//             while (count < k) {
+//                 j++
+//                 if (j >= code.length) {
+//                     j = 0
+//                 }
+//                 res[i] += code[j]
+//                 count++
+//             }
+//         }
+//         if (k < 0) {
+//             let j = i
+//             let count = 0
+//             while (count < Math.abs(k)) {
+//                 j--
+//                 if (j < 0) {
+//                     j = code.length - 1
+//                 }
+//                 res[i] += code[j]
+//                 count++
+//             }
+//         }
+//     }
+
+//     return res
+// }
+
 var decrypt = function (code, k) {
-    let sum = code[1] + code[2] + code[3]
-    let res = new Array(code.length).fill(0)
-    if (k === 0) return res
-    for (let i = 0; i < code.length; i++) {
-        if (k > 0) {
-            let j = i
-            let count = 0
-            while (count < k) {
-                j++
-                if (j >= code.length) {
-                    j = 0
-                }
-                res[i] += code[j]
-                count++
-            }
+    let n = code.length
+    let result = new Array(n).fill(0); //n
+    if (k === 0) return result;
+    let left = 0;
+    let runningTotal = 0;
+
+    for (let right = 0; right < n + Math.abs(k); right++) { //n+k
+        runningTotal += code[right % n];
+
+        if (right - left + 1 > Math.abs(k)) {
+            runningTotal -= code[left % n];
+            left = (left + 1) % n;
         }
-        if (k < 0) {
-            let j = i
-            let count = 0
-            while (count < Math.abs(k)) {
-                j--
-                if (j < 0) {
-                    j = code.length - 1
-                }
-                res[i] += code[j]
-                count++
+
+        if (right - left + 1 === Math.abs(k)) {
+            if (k > 0) {
+                result[(left + n - 1) % n] = runningTotal;
+            } else if (k < 0) {
+                result[(right + 1) % n] = runningTotal;
             }
         }
     }
-
-    return res
+    return result;
 }
 
-
-console.log(decrypt([5,7,1,4], 3))
-console.log(decrypt([1,2,3,4], 0))
-console.log(decrypt([2,4,9,3], -2))
+console.log(decrypt([5, 7, 1, 4], 3))
+console.log(decrypt([1, 2, 3, 4], 0))
+console.log(decrypt([2, 4, 9, 3], -2))
