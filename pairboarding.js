@@ -616,45 +616,101 @@
 //     return res
 // }
 
-var decrypt = function (code, k) {
-    let n = code.length
-    let result = new Array(n).fill(0); //n
-    if (k === 0) return result;
-    let left = 0;
-    let runningTotal = 0;
+// var decrypt = function (code, k) {
+//     let n = code.length
+//     let result = new Array(n).fill(0); //n
+//     if (k === 0) return result;
+//     let left = 0;
+//     let runningTotal = 0;
 
-    for (let right = 0; right < n + Math.abs(k); right++) { //n+k
-        runningTotal += code[right % n];
-        //adds to the runningTotal
-        //code[right % n] mod to the right pointer helps wrap back around in array
-        // n = 4 but if right = 4 then 4%4 gives us 0 starting us back at the beginning
+//     for (let right = 0; right < n + Math.abs(k); right++) { //n+k
+//         runningTotal += code[right % n];
+//         //adds to the runningTotal
+//         //code[right % n] mod to the right pointer helps wrap back around in array
+//         // n = 4 but if right = 4 then 4%4 gives us 0 starting us back at the beginning
 
-        if (right - left + 1 > Math.abs(k)) {
-            //if right pointer and left pointer subtracted and added by 1 is greater than k
-            //then that means the sliding window went over ans we have to remove the first element added, which is at left pointer
-            //this is when the left pointer increments and covers the updated window starting point
-            runningTotal -= code[left % n]; // removes first element
-            left = (left + 1) % n; // declares new first element in sliding window
+//         if (right - left + 1 > Math.abs(k)) {
+//             //if right pointer and left pointer subtracted and added by 1 is greater than k
+//             //then that means the sliding window went over ans we have to remove the first element added, which is at left pointer
+//             //this is when the left pointer increments and covers the updated window starting point
+//             runningTotal -= code[left % n]; // removes first element
+//             left = (left + 1) % n; // declares new first element in sliding window
+//         }
+
+//         if (right - left + 1 === Math.abs(k)) {
+//             //if right minus left pointer plus 1 is the same as k then we have all the elements we need to place in the new arr
+//             if (k > 0) {
+//                 result[(left + n - 1) % n] = runningTotal;
+//                 //if k is greater than 0 then result arr at index left plus arr length -1 (ex. (0 + 4 -1) % 4 = 3) so it reassigns at the index
+//                 //before our left pointer. if it's 0 then it will wrap around to the last index in the array
+//             } else if (k < 0) {
+//                 result[(right + 1) % n] = runningTotal;
+//                 //if k < 0 then we'd want to reassign the index after the sliding window (3 + 1 % 4 = 0) if it is at the end of the array
+//                 //it wraps around to the beginning
+//             }
+//         }
+//     }
+//     return result;
+// }
+
+// console.log(decrypt([5, 7, 1, 4], 3))
+// console.log(decrypt([1, 2, 3, 4], 0))
+// console.log(decrypt([2, 4, 9, 3], -2))
+
+// console.log(3%4)
+
+
+// 424. Longest Repeating Character Replacement
+// Medium
+// Topics
+// premium lock icon
+// Companies
+// You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.
+
+// Return the length of the longest substring containing the same letter you can get after performing the above operations.
+
+
+
+// Example 1:
+
+// Input: s = "ABAB", k = 2
+// Output: 4
+// Explanation: Replace the two 'A's with two 'B's or vice versa.
+// Example 2:
+
+// Input: s = "AABABBA", k = 1
+// Output: 4
+// Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
+// The substring "BBBB" has the longest repeating letters, which is 4.
+// There may exists other ways to achieve this answer too.
+
+
+var characterReplacement = function (s, k) {
+    let count = {}
+    let p1 = 0
+    let most = 0
+    let res = 0
+    for (let i = 0; i < s.length; i++) {
+        count[s[i]] = (count[s[i]] || 0) + 1
+        //count the char at the current index and increment
+
+        most = Math.max(count[s[i]], most)
+        //reassign most to either the current char were on or what ever is most already
+
+
+        //the size of the window minus the most count. is it greater? if so then theres too many different chars
+        // the most var tells us which char is the greatest within our window. between p1 and i so that subtracted from the sliding window will
+        // give us how many other chars that are different that we would need to change. if its greater than k ...
+        if ((i - p1 + 1) - most > k) {
+            //remove the first char from the window (p1) by decreasing it's count from the count POJO then incrementing p1.
+            //if there are still too many diff chars in the next iteration then same thing happens until there aren't anymore that
+            // need to be changed vs how many we could change (k)
+            count[s[p1]] -= 1
+            p1++
         }
 
-        if (right - left + 1 === Math.abs(k)) {
-            //if right minus left pointer plus 1 is the same as k then we have all the elements we need to place in the new arr
-            if (k > 0) {
-                result[(left + n - 1) % n] = runningTotal;
-                //if k is greater than 0 then result arr at index left plus arr length -1 (ex. (0 + 4 -1) % 4 = 3) so it reassigns at the index
-                //before our left pointer. if it's 0 then it will wrap around to the last index in the array
-            } else if (k < 0) {
-                result[(right + 1) % n] = runningTotal;
-                //if k < 0 then we'd want to reassign the index after the sliding window (3 + 1 % 4 = 0) if it is at the end of the array
-                //it wraps around to the beginning
-            }
-        }
+        //the result is the window size that we are left with, if it's greater than previously recorded window sizes
+        res = Math.max(res, (i - p1 + 1))
     }
-    return result;
-}
-
-console.log(decrypt([5, 7, 1, 4], 3))
-console.log(decrypt([1, 2, 3, 4], 0))
-console.log(decrypt([2, 4, 9, 3], -2))
-
-console.log(3%4)
+    return res
+};
