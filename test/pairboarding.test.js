@@ -19,6 +19,3 @@ describe("maxProfit", function () {
         } )
     });
 });
-
-
-  
