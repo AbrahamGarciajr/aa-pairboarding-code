@@ -685,32 +685,66 @@
 // There may exists other ways to achieve this answer too.
 
 
-var characterReplacement = function (s, k) {
-    let count = {}
-    let p1 = 0
-    let most = 0
-    let res = 0
-    for (let i = 0; i < s.length; i++) {
-        count[s[i]] = (count[s[i]] || 0) + 1
-        //count the char at the current index and increment
+// var characterReplacement = function (s, k) {
+//     let count = {}
+//     let p1 = 0
+//     let most = 0
+//     let res = 0
+//     for (let i = 0; i < s.length; i++) {
+//         count[s[i]] = (count[s[i]] || 0) + 1
+//         //count the char at the current index and increment
 
-        most = Math.max(count[s[i]], most)
-        //reassign most to either the current char were on or what ever is most already
+//         most = Math.max(count[s[i]], most)
+//         //reassign most to either the current char were on or what ever is most already
 
 
-        //the size of the window minus the most count. is it greater? if so then theres too many different chars
-        // the most var tells us which char is the greatest within our window. between p1 and i so that subtracted from the sliding window will
-        // give us how many other chars that are different that we would need to change. if its greater than k ...
-        if ((i - p1 + 1) - most > k) {
-            //remove the first char from the window (p1) by decreasing it's count from the count POJO then incrementing p1.
-            //if there are still too many diff chars in the next iteration then same thing happens until there aren't anymore that
-            // need to be changed vs how many we could change (k)
-            count[s[p1]] -= 1
-            p1++
-        }
+//         //the size of the window minus the most count. is it greater? if so then theres too many different chars
+//         // the most var tells us which char is the greatest within our window. between p1 and i so that subtracted from the sliding window will
+//         // give us how many other chars that are different that we would need to change. if its greater than k ...
+//         if ((i - p1 + 1) - most > k) {
+//             //remove the first char from the window (p1) by decreasing it's count from the count POJO then incrementing p1.
+//             //if there are still too many diff chars in the next iteration then same thing happens until there aren't anymore that
+//             // need to be changed vs how many we could change (k)
+//             count[s[p1]] -= 1
+//             p1++
+//         }
 
-        //the result is the window size that we are left with, if it's greater than previously recorded window sizes
-        res = Math.max(res, (i - p1 + 1))
-    }
-    return res
-};
+//         //the result is the window size that we are left with, if it's greater than previously recorded window sizes
+//         res = Math.max(res, (i - p1 + 1))
+//     }
+//     return res
+// };
+
+
+
+// 121. Best Time to Buy and Sell Stock
+// Solved
+// Easy
+// Topics
+// premium lock icon
+// Companies
+// You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+// You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+// Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+
+
+// Example 1:
+
+// Input: prices = [7,1,5,3,6,4]
+// Output: 5
+// Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+// Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+// Example 2:
+
+// Input: prices = [7,6,4,3,1]
+// Output: 0
+// Explanation: In this case, no transactions are done and the max profit = 0.
+
+
+// Constraints:
+
+// 1 <= prices.length <= 105
+// 0 <= prices[i] <= 104
