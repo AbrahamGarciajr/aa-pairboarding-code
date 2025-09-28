@@ -843,3 +843,19 @@ const maxProfit = function (prices) {
 
     return profit
 }
+
+
+
+
+
+
+// module.exports = {
+//     maxProfit
+// }
+
+
+try {
+  exports.maxProfit = maxProfit;
+} catch (e) {
+  module.exports = null;
+}
