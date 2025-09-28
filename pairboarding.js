@@ -748,3 +748,98 @@
 
 // 1 <= prices.length <= 105
 // 0 <= prices[i] <= 104
+
+
+// diff answers:
+
+
+// var maxProfit = function (prices) {
+//     // let lowest = 0
+//     // let highest = 0
+
+
+//     // for (let i = 1; i < prices.length - 1; i++) {
+//     //     if (prices[lowest] > prices[i]) lowest = i
+//     // }
+
+
+
+//     // for (let i = lowest; i < prices.length; i++) {
+//     //     if (highest < prices[i]) highest = prices[i]
+//     // }
+
+//     // console.log(highest, prices[lowest])
+//     // return highest - prices[lowest]
+
+//     // let obj = {}
+//     // let highest = 0
+//     // for (let i = 0; i < prices.length; i++) {
+//     //     let buy = prices[i]
+//     //     for (let j = i; j < prices.length; j++) {
+//     //         let sell = prices[j]
+//     //         obj[sell - buy] = true
+//     //     }
+//     // }
+
+//     // for (let price in obj) {
+//     //     if (Number(price) > highest) highest = Number(price)
+//     // }
+
+
+//     // // console.log(lowest, highest)
+//     // return highest
+
+//     let buy = prices[0]
+//     let gain = 0
+
+//     for (let i = 0; i < prices.length; i++) {
+//         if (prices[i] < buy) {
+//             buy = prices[i]
+//         } else if ((prices[i] - buy) > gain){
+//             gain = prices[i] - buy
+//         }
+//     }
+
+//     return gain
+// };
+
+// const maxProfit = function (prices) {
+//     // let profit = 0
+//     // let least = 0
+//     // let most = 0
+
+//     // for (let i = 0; i < prices.length; i++) {
+//     //     // if(prices[i] > prices[most]){
+//     //     //     most = i
+//     //     // }
+
+//     //     if(prices[i] < prices[least]){
+//     //         least = i
+//     //     }
+
+//     //     if(prices[i] - prices[least] > profit && i > least){
+//     //         profit = prices[i] - prices[least]
+//     //     }
+//     // }
+
+
+
+//     return profit
+// }
+
+
+const maxProfit = function (prices) {
+    let least = 0
+    //find the lowest postible price while also finding the highest profit
+    let profit = 0
+    for (let i = 0; i < prices.length; i++) {
+        if (prices[least] > prices[i]) {
+            least = i
+        }
+        if (prices[i] - prices[least] > profit) {
+            profit = prices[i] - prices[least]
+        }
+    }
+
+    return profit
+}
