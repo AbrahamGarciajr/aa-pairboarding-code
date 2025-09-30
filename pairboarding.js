@@ -828,34 +828,34 @@
 // }
 
 
-const maxProfit = function (prices) {
-    let least = 0
-    //find the lowest postible price while also finding the highest profit
-    let profit = 0
-    for (let i = 0; i < prices.length; i++) {
-        if (prices[least] > prices[i]) {
-            least = i
-        }
-        if (prices[i] - prices[least] > profit) {
-            profit = prices[i] - prices[least]
-        }
-    }
+// const maxProfit = function (prices) {
+//     let least = 0
+//     //find the lowest postible price while also finding the highest profit
+//     let profit = 0
+//     for (let i = 0; i < prices.length; i++) {
+//         if (prices[least] > prices[i]) {
+//             least = i
+//         }
+//         if (prices[i] - prices[least] > profit) {
+//             profit = prices[i] - prices[least]
+//         }
+//     }
 
-    return profit
-}
-
-
-
-
-
-
-// module.exports = {
-//     maxProfit
+//     return profit
 // }
 
 
-try {
-  exports.maxProfit = maxProfit;
-} catch (e) {
-  module.exports = null;
-}
+
+
+
+
+// // module.exports = {
+// //     maxProfit
+// // }
+
+
+// try {
+//   exports.maxProfit = maxProfit;
+// } catch (e) {
+//   module.exports = null;
+// }
