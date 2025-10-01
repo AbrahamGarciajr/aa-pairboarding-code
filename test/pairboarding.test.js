@@ -1,21 +1,53 @@
-import assert from "node:assert";
+// const {assert} = require("node:assert") ;
 
 // const assert = require('node:assert');
-
-try {
-    ({ maxProfit } = require('../pairboarding.js'));
-} catch (e) { console.log("Failed to load dependencies") }
-
+import assert from "node:assert"
+import characterReplacement from '../pairboarding.js'
+// const {characterReplacement} = require("../pairboarding.js")
 // console.log(maxProfit([1,24,345,7,2]))
 
-describe("maxProfit", function () {
-    describe("Highest payoff", function () {
-        it("Should return the highest profit made in a array of prices for each day", function () {
-            assert.equal([7,1,5,3,6,4], 5);
+// describe("maxProfit", function () {
+//     describe("Highest payoff", function () {
+
+//         it('Should return 4', function (){
+//             assert.equal(characterReplacement("AABABBA", 1), 4)
+//         } )
+//     });
+// });
+
+
+describe('character replacement', function () {
+    describe('longest unbroken group of chars', function () {
+        it("should return 4 for 'AABABBA' with k = 1", function () {
+            assert.strictEqual(characterReplacement("AABABBA", 1), 4);
         });
 
-        it('Should return 0 because the area does not have the ability to make a profit.', function (){
-            assert.equal(maxProfit([7,6,4,3,1]), 0)
-        } )
-    });
-});
+        it("should return 4 for 'ABAB' with k = 2", function () {
+            assert.strictEqual(characterReplacement("ABAB", 2), 4);
+        });
+
+        it("should return 5 for 'AAAAA' with k = 2", function () {
+            assert.strictEqual(characterReplacement("AAAAA", 2), 5);
+        });
+
+        it("should return 1 for 'ABCDE' with k = 0", function () {
+            assert.strictEqual(characterReplacement("ABCDE", 0), 1);
+        });
+
+        it("should return 3 for 'AAAB' with k = 0", function () {
+            assert.strictEqual(characterReplacement("AAAB", 0), 3);
+        });
+
+        it("should handle empty string", function () {
+            assert.strictEqual(characterReplacement("", 2), 0);
+        });
+
+        it("should handle single character string", function () {
+            assert.strictEqual(characterReplacement("Z", 3), 1);
+        });
+
+        it("should return 5 for 'AABABBAA' with k = 2", function () {
+            assert.strictEqual(characterReplacement("AABABBAA", 2), 5);
+        });
+    })
+})
