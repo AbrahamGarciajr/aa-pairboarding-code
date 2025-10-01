@@ -859,3 +859,32 @@
 // } catch (e) {
 //   module.exports = null;
 // }
+
+
+
+
+const characterReplacement = function (s, k) {
+  let left = 0
+  let longest = 0
+  let freq = {}
+  let mostFreq = 0
+
+  for (let right = 0; right < s.length; right++) {
+    let char = s[right]
+    freq[char] = (freq[char] || 0) + 1
+    if (freq[char] > mostFreq) mostFreq = freq[char]
+
+
+    if (((right - left + 1) - mostFreq > k)) {
+      freq[s[left]] -= 1
+      left++
+    }
+
+    if ((right - left + 1) > longest) {
+      longest = (right - left + 1)
+    }
+
+  }
+
+  return longest
+}
