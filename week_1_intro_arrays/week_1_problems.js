@@ -22,20 +22,33 @@
 
 
 const longestCommonPrefix = function (strs) {
-    let longest = strs[0]
-    for (let i = 1; i < strs.length; i++) {
-        let pre = 0
-        let word = strs[i]
-        while (pre < longest.length) {
-            if (word[pre] !== longest[pre]) {
-                longest = longest.slice(0, pre)
-            }
-            pre++
+
+    // let longest = strs ? strs[0] : ''
+    // for (let i = 1; i < strs.length; i++) {
+    //     let pre = 0
+    //     let word = strs[i]
+    //     while (pre < longest.length) {
+    //         if (word[pre] !== longest[pre]) {
+    //             longest = longest.slice(0, pre)
+    //         }
+    //         pre++
+    //     }
+
+    //     if (longest.length < 1) {
+    //         return longest
+    //     }
+    // }
+
+    // return longest
+
+    let longest = strs[0] ? strs[0] : ''
+
+    for (let i = 0; i < strs.length; i++) {
+        while (strs[i].indexOf(longest) !== 0) {
+            longest = longest.slice(0, longest.length - 1)
         }
 
-        if(longest.length < 1){
-            return longest
-        }
+        if (!longest) return ''
     }
 
     return longest
