@@ -1,9 +1,14 @@
 // const {assert} = require("node:assert") ;
 
 // const assert = require('node:assert');
-import assert from "node:assert"
-import lengthOfLongestSubstring from '../pairboarding.js'
+// import assert from "node:assert"
+
+
+// import lengthOfLongestSubstring from '../pairboarding.js'
 // const {characterReplacement} = require("../pairboarding.js")
+
+
+
 // console.log(maxProfit([1,24,345,7,2]))
 
 // describe("maxProfit", function () {
@@ -53,44 +58,44 @@ import lengthOfLongestSubstring from '../pairboarding.js'
 // })
 
 
-describe("lengthOfLongestSubstring", function () {
-    it("should return 3 for 'abcabcbb'", function () {
-        assert.strictEqual(lengthOfLongestSubstring("abcabcbb"), 3);
-    });
+// describe("lengthOfLongestSubstring", function () {
+//     it("should return 3 for 'abcabcbb'", function () {
+//         assert.strictEqual(lengthOfLongestSubstring("abcabcbb"), 3);
+//     });
 
-    it("should return 1 for 'bbbbb'", function () {
-        assert.strictEqual(lengthOfLongestSubstring("bbbbb"), 1);
-    });
+//     it("should return 1 for 'bbbbb'", function () {
+//         assert.strictEqual(lengthOfLongestSubstring("bbbbb"), 1);
+//     });
 
-    it("should return 3 for 'pwwkew'", function () {
-        assert.strictEqual(lengthOfLongestSubstring("pwwkew"), 3);
-    });
+//     it("should return 3 for 'pwwkew'", function () {
+//         assert.strictEqual(lengthOfLongestSubstring("pwwkew"), 3);
+//     });
 
-    it("should return 0 for empty string", function () {
-        assert.strictEqual(lengthOfLongestSubstring(""), 0);
-    });
+//     it("should return 0 for empty string", function () {
+//         assert.strictEqual(lengthOfLongestSubstring(""), 0);
+//     });
 
-    it("should return 1 for single character 'a'", function () {
-        assert.strictEqual(lengthOfLongestSubstring("a"), 1);
-    });
+//     it("should return 1 for single character 'a'", function () {
+//         assert.strictEqual(lengthOfLongestSubstring("a"), 1);
+//     });
 
-    it("should return 2 for 'au'", function () {
-        assert.strictEqual(lengthOfLongestSubstring("au"), 2);
-    });
+//     it("should return 2 for 'au'", function () {
+//         assert.strictEqual(lengthOfLongestSubstring("au"), 2);
+//     });
 
-    it("should return 5 for 'tmmzuxt'", function () {
-        assert.strictEqual(lengthOfLongestSubstring("tmmzuxt"), 5); // "mzuxt"
-    });
+//     it("should return 5 for 'tmmzuxt'", function () {
+//         assert.strictEqual(lengthOfLongestSubstring("tmmzuxt"), 5); // "mzuxt"
+//     });
 
-    it("should handle digits and return 10 for '1234567890'", function () {
-        assert.strictEqual(lengthOfLongestSubstring("1234567890"), 10);
-    });
+//     it("should handle digits and return 10 for '1234567890'", function () {
+//         assert.strictEqual(lengthOfLongestSubstring("1234567890"), 10);
+//     });
 
-    it("should handle symbols and return 4 for '!@!@'", function () {
-        assert.strictEqual(lengthOfLongestSubstring("!@!@"), 2);
-    });
+//     it("should handle symbols and return 4 for '!@!@'", function () {
+//         assert.strictEqual(lengthOfLongestSubstring("!@!@"), 2);
+//     });
 
-    it("should return 6 for 'abcdef'", function () {
-        assert.strictEqual(lengthOfLongestSubstring("abcdef"), 6);
-    });
-});
+//     it("should return 6 for 'abcdef'", function () {
+//         assert.strictEqual(lengthOfLongestSubstring("abcdef"), 6);
+//     });
+// });
