@@ -4,6 +4,8 @@ import longestCommonPrefix from '../week_1_intro_arrays/week_1_problems.js'
 
 
 describe('LongestCommonPrefix', function () {
+
+    //dynamic testing
     let tests = [{ args: ["flower", "flow", "flight"], expect: 'fl' },
     { args: ["dog", "racecar", "car"], expect: '' },
     { args: ["interspecies", "interstellar", "interstate"], expect: 'inters' },
@@ -13,7 +15,6 @@ describe('LongestCommonPrefix', function () {
     { args: ["abc", "abc", "abc"], expect: 'abc' },
     { args: ["apple", "banana", "cherry"], expect: '' },
     { args: ["hello", "hello world", "hello!"], expect: 'hello' }]
-
 
     tests.forEach( test => {
         let {args, expect} = test
@@ -28,6 +29,9 @@ describe('LongestCommonPrefix', function () {
         }
 
     })
+
+
+    //old fashion write it all out testing
 
     // it('Should return "fl" from ["flower","flow","flight"]', function () {
     //     assert.equal(longestCommonPrefix([["flower", "flow", "flight"]]), 'fl')
