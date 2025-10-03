@@ -21,7 +21,7 @@
 // Explanation: There is no common prefix among the input strings.
 
 
-const longestCommonPrefix = function (strs) {
+// const longestCommonPrefix = function (strs) {
 
     // let longest = strs ? strs[0] : ''
     // for (let i = 1; i < strs.length; i++) {
@@ -41,21 +41,21 @@ const longestCommonPrefix = function (strs) {
 
     // return longest
 
-    let longest = strs[0] ? strs[0] : ''
+//     let longest = strs[0] ? strs[0] : ''
 
-    for (let i = 0; i < strs.length; i++) {
-        while (strs[i].indexOf(longest) !== 0) {
-            longest = longest.slice(0, longest.length - 1)
-        }
+//     for (let i = 0; i < strs.length; i++) {
+//         while (strs[i].indexOf(longest) !== 0) {
+//             longest = longest.slice(0, longest.length - 1)
+//         }
 
-        if (!longest) return ''
-    }
+//         if (!longest) return ''
+//     }
 
-    return longest
-}
+//     return longest
+// }
 
 
-export default longestCommonPrefix
+// export default longestCommonPrefix
 
 
 
