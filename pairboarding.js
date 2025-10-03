@@ -963,28 +963,28 @@
 // s consists of English letters, digits, symbols and spaces.
 
 
-const lengthOfLongestSubstring = function (s) {
-  let freq = {}
-  let left = 0
-  let longest = 0
+// const lengthOfLongestSubstring = function (s) {
+//   let freq = {}
+//   let left = 0
+//   let longest = 0
 
-  for (let right = 0; right < s.length; right++) {
-    let char = s[right]
-    freq[char] = (freq[char] || 0) + 1
+//   for (let right = 0; right < s.length; right++) {
+//     let char = s[right]
+//     freq[char] = (freq[char] || 0) + 1
 
-    while (freq[char] > 1) {
-      freq[s[left]] -= 1
-      left++
-    }
+//     while (freq[char] > 1) {
+//       freq[s[left]] -= 1
+//       left++
+//     }
 
-    longest = Math.max(longest, right - left + 1)
-  }
+//     longest = Math.max(longest, right - left + 1)
+//   }
 
-  return longest
-};
+//   return longest
+// };
 
 
-export default lengthOfLongestSubstring
+// export default lengthOfLongestSubstring
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
