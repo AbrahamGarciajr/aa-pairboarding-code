@@ -68,14 +68,26 @@
 
 var dailyTemperatures = function (temperatures) {
     const stack = [];
+    //new stack array
     const result = new Array(temperatures.length).fill(0);
+    //res to be returned. only as long as the temps arg being passed in
 
     for (let i = 0; i < temperatures.length; i++) {
+        //while there is something in the stack AND temp at the curr iteration is greater than the temp
+        //at the index similar to that of the last index in the stack
+        //this checks if the most recent in stack is less than curr index temp
         while (stack.length > 0 && temperatures[i] > temperatures[stack[stack.length - 1]]) {
+            //if so then pop index from the stack
             const idx = stack.pop();
+            //in the res arr at the index popped off initialize it to the curr index minus the popped index
+            //given how many days until its hotter
             result[idx] = i - idx;
+
+            //if stack still has a something and the last something of the stack is less than the curr temp
+            //then loop through again with every said above
         }
         stack.push(i);
+        //push curr index into stack for future loop checking
     }
 
     return result;
