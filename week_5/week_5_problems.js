@@ -41,28 +41,46 @@
 //     return res
 // }
 
-const dailyTemperatures = function (temps) {
-    let temps1 = [...temps]
-    let res = new Array(temps1.length).fill(0)
+// const dailyTemperatures = function (temps) {
+//     let temps1 = [...temps]
+//     let res = new Array(temps1.length).fill(0)
 
-    while (temps1.length) {
-        let i = temps1.length - 2
-        // console.log(temps1, the )
-        // console.log(res, 'the res')
-        let end = temps1.length - 1
-        let temp = temps1.pop()
+//     while (temps1.length) {
+//         let i = temps1.length - 2
+//         // console.log(temps1, the )
+//         // console.log(res, 'the res')
+//         let end = temps1.length - 1
+//         let temp = temps1.pop()
 
-        while (i >= 0) {
-            // console.log(temp, temps1[i])
-            if (temps1[i] < temp) {
-                res[i] = end - i
-            }
-            i--
+//         while (i >= 0) {
+//             // console.log(temp, temps1[i])
+//             if (temps1[i] < temp) {
+//                 res[i] = end - i
+//             }
+//             i--
+//         }
+//     }
+//     // console.log(res)
+//     return res
+// }
+
+
+
+var dailyTemperatures = function (temperatures) {
+    const stack = [];
+    const result = new Array(temperatures.length).fill(0);
+
+    for (let i = 0; i < temperatures.length; i++) {
+        while (stack.length > 0 && temperatures[i] > temperatures[stack[stack.length - 1]]) {
+            const idx = stack.pop();
+            result[idx] = i - idx;
         }
+        stack.push(i);
     }
-    // console.log(res)
-    return res
-}
+
+    return result;
+};
+
 
 // { args: [73, 74, 75, 71, 69, 72, 76, 73], expect: [1, 1, 4, 2, 1, 1, 0, 0] },
 //     { args: [30, 40, 50, 60], expect: [1, 1, 1, 0] },
