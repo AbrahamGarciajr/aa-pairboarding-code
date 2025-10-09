@@ -1,3 +1,3 @@
 import assert from "node:assert"
 
-import dailyTemperatures from '../week_5/week_5_problems.js'
+//not going to make test cases for linked list week
