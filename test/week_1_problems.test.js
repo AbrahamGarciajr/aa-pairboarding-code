@@ -1,7 +1,6 @@
 import assert from "node:assert"
 
-import longestCommonPrefix from '../week_1_intro_arrays/week_1_problems.js'
-
+import { longestCommonPrefix, getConcatenation } from '../week_1_intro_arrays/week_1_problems.js'
 
 describe('LongestCommonPrefix', function () {
 
@@ -16,15 +15,16 @@ describe('LongestCommonPrefix', function () {
     { args: ["apple", "banana", "cherry"], expect: '' },
     { args: ["hello", "hello world", "hello!"], expect: 'hello' }]
 
-    tests.forEach( test => {
-        let {args, expect} = test
-        if (expect === longestCommonPrefix(args)) {
+    tests.forEach(test => {
+        let { args, expect } = test
+        let res = longestCommonPrefix(args)
+        if (expect === res) {
             it(`should return ${expect} for ${args}`, function () {
-                assert.equal(longestCommonPrefix(args), expect)
+                assert.equal(res, expect)
             })
-        }else {
-            it(`returned ${longestCommonPrefix(args)} instead of ${expect}`,function() {
-                assert.equal(longestCommonPrefix(args), expect)
+        } else {
+            it(`returned ${res} instead of ${expect}`, function () {
+                assert.equal(res, expect)
             })
         }
 
@@ -88,7 +88,36 @@ describe('LongestCommonPrefix', function () {
 ///////////////////////////////////////////
 
 
+describe('getConcatenation', function () {
+    let tests = [
+        { args: [1, 2, 1], expect: [1, 2, 1, 1, 2, 1] },
+        { args: [1, 3, 2, 1], expect: [1, 3, 2, 1, 1, 3, 2, 1] },
+        { args: [1, 5, 2, 45, 6], expect: [1, 5, 2, 45, 6, 1, 5, 2, 45, 6] },
+        { args: [], expect: [] },
+        { args: [7], expect: [7, 7] },
+        { args: [0, 0, 0], expect: [0, 0, 0, 0, 0, 0] },
+        { args: [-1, -2, 3], expect: [-1, -2, 3, -1, -2, 3] },
+        { args: [10, 20, 30, 40, 50], expect: [10, 20, 30, 40, 50, 10, 20, 30, 40, 50] },
+        { args: [1, 1, 1, 1], expect: [1, 1, 1, 1, 1, 1, 1, 1] },
+        { args: [100], expect: [100, 100] },
+        { args: [3, 1, 4, 1, 5, 9, 2, 6], expect: [3, 1, 4, 1, 5, 9, 2, 6, 3, 1, 4, 1, 5, 9, 2, 6] }
+    ]
 
+
+    tests.forEach(test => {
+        let { args, expect } = test
+        let res = getConcatenation(args)
+        if (expect === res) {
+            it(`should return ${expect} for ${args}`, function () {
+                assert.deepStrictEqual(res, expect)
+            })
+        } else {
+            it(`returned ${res} instead of ${expect}`, function () {
+                assert.deepStrictEqual(res, expect)
+            })
+        }
+    })
+})
 
 
 ///////////////////////////////////////////
